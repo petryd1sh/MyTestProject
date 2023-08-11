@@ -17,4 +17,8 @@ public class CommentService : ICommentService
     {
         return await _commentsApi.GetCommentsAsync();
     }
+    public async Task<Comment> GetComment(int commentId)
+    {
+        return _commentsApi.GetCommentAsync(commentId).Result.GetContent();
+    }
 }

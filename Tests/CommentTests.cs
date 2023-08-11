@@ -49,6 +49,10 @@ public class CommentsTests<T> : TestBase<T> where T : class, ITestFixture, new()
     public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
+        var commentId = 1;
+        var comment1 = await CommentService.GetComment(commentId);
+        Console.WriteLine(comment1);
         Assert.That(comments, Is.Not.Empty);
+        Assert.That(comment1.Id, Is.EqualTo(commentId));
     }
 }
