@@ -8,10 +8,10 @@ public class CommentsTests : TestBase
 {
     private ICommentService CommentService => Resolve<ICommentService>();
 
-    public CommentsTests()
-    {
-        //Register<JsonPlaceholderTestFixture>();
-    }
+    // public CommentsTests()
+    // {
+    //     Register<JsonPlaceholderTestFixture>();
+    // }
     // Either ctor or setup are valid (but not both)
     [SetUp]
     public void Setup()
@@ -23,8 +23,8 @@ public class CommentsTests : TestBase
     public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
-        Console.WriteLine(comments.Count);
-        comments.ForEach(Console.WriteLine);
+        //Console.WriteLine(comments.Count);
+        //comments.ForEach(Console.WriteLine);
         Assert.That(comments, Is.Not.Empty);
         Assert.That(comments, Has.Count.EqualTo(500));
     }
@@ -38,8 +38,8 @@ public class CommentsTests2 : TestBase<JsonPlaceholderTestFixture>
     public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
-        Console.WriteLine(comments.Count);
-        comments.ForEach(Console.WriteLine);
+        //Console.WriteLine(comments.Count);
+        //comments.ForEach(Console.WriteLine);
         Assert.That(comments, Is.Not.Empty);
         Assert.That(comments, Has.Count.EqualTo(500));
     }
@@ -53,8 +53,8 @@ public class CommentsTests<T> : TestBase<T> where T : class, ITestFixture, new()
     public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
-        Console.WriteLine(comments.Count);
-        comments.ForEach(Console.WriteLine);
+        //Console.WriteLine(comments.Count);
+        //comments.ForEach(Console.WriteLine);
         Assert.That(comments, Is.Not.Empty);
         Assert.That(comments, Has.Count.EqualTo(500));
     }
