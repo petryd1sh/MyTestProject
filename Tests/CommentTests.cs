@@ -1,13 +1,18 @@
-using Microsoft.Extensions.DependencyInjection;
 using MyTestProject.Core;
 using MyTestProject.Services;
 
 namespace MyTestProject.Tests;
 
+[Category("Comments")]
 public class CommentsTests : TestBase
 {
     private ICommentService CommentService => Resolve<ICommentService>();
-    
+
+    public CommentsTests()
+    {
+        //Register<JsonPlaceholderTestFixture>();
+    }
+    // Either ctor or setup are valid (but not both)
     [SetUp]
     public void Setup()
     {
@@ -15,7 +20,22 @@ public class CommentsTests : TestBase
     }
 
     [Test]
-    public async Task Test1()
+    public async Task CanGetComments()
+    {
+        var comments = await CommentService.GetComments();
+        Console.WriteLine(comments.Count);
+        comments.ForEach(Console.WriteLine);
+        Assert.That(comments, Is.Not.Empty);
+        Assert.That(comments, Has.Count.EqualTo(500));
+    }
+}
+
+public class CommentsTests2 : TestBase<JsonPlaceholderTestFixture>
+{
+    private ICommentService CommentService => Resolve<ICommentService>();
+
+    [Test]
+    public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
         Console.WriteLine(comments.Count);
@@ -26,57 +46,11 @@ public class CommentsTests : TestBase
 }
 
 [TestFixture(typeof(JsonPlaceholderTestFixture))]
-public class CommentsTests<T> : TestBase<T> where T : class, IConfigureServices, new()
+public class CommentsTests<T> : TestBase<T> where T : class, ITestFixture, new()
 {
     private ICommentService CommentService => Resolve<ICommentService>();
     [Test]
-    public async Task Test1()
-    {
-        var comments = await CommentService.GetComments();
-        Console.WriteLine(comments.Count);
-        comments.ForEach(Console.WriteLine);
-        Assert.That(comments, Is.Not.Empty);
-        Assert.That(comments, Has.Count.EqualTo(500));
-    }
-}
-
-public class MyApplicationBaseTest : TestBase<JsonPlaceholderTestFixture>
-{
-    public ICommentService CommentService;
-
-    [SetUp]
-    public void Setup()
-    {
-        CommentService = Resolve<ICommentService>();
-    }
-    
-    [Test]
-    public async Task Test1()
-    {
-        var comments = await CommentService.GetComments();
-        Console.WriteLine(comments.Count);
-        comments.ForEach(Console.WriteLine);
-        Assert.That(comments, Is.Not.Empty);
-        Assert.That(comments, Has.Count.EqualTo(500));
-    }
-}
-
-public class MyApplicationBaseTest2 : TestBase<JsonPlaceholderTestFixture>
-{
-    public ICommentService CommentService; // show with generated constructor and why it does not work (parameterless ctors only)
-
-    public MyApplicationBaseTest2(ICommentService commentService)
-    {
-        CommentService = commentService;
-    }
-
-    [SetUp]
-    public void Setup()
-    {
-        //CommentService = Resolve<ICommentService>();
-    }
-    //[Test]
-    public async Task Test1()
+    public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
         Console.WriteLine(comments.Count);

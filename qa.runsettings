@@ -6,6 +6,11 @@
     </RunConfiguration>
     <LoggerRunSettings>
         <Loggers>
+            <Logger friendlyName="nunit" enabled="True">
+                <Configuration>
+                    <LogFilePrefix>TestResults</LogFilePrefix>
+                </Configuration>
+            </Logger>
             <Logger friendlyName="trx" enabled="True">
                 <Configuration>
                     <LogFilePrefix>TestResults</LogFilePrefix>
