@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+    <RunConfiguration>
+        <!--<TestCaseFilter>TestCategory=cat</TestCaseFilter>-->
+        <ResultsDirectory>.\TestResults</ResultsDirectory>
+    </RunConfiguration>
+    <LoggerRunSettings>
+        <Loggers>
+            <Logger friendlyName="trx" enabled="True">
+                <Configuration>
+                    <LogFilePrefix>TestResults</LogFilePrefix>
+                </Configuration>
+            </Logger>
+            <Logger friendlyName="html" enabled="True">
+                <Configuration>
+                    <LogFilePrefix>TestResults</LogFilePrefix>
+                </Configuration>
+            </Logger>
+        </Loggers>
+    </LoggerRunSettings>
+    <TestRunParameters>
+        <Parameter name="baseUrl" value="https://jsonplaceholder.typicode.com" />
+    </TestRunParameters>
+</RunSettings>
