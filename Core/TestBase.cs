@@ -21,6 +21,15 @@ public class TestBase
         Debug.Assert(ServiceProvider != null, nameof(ServiceProvider) + " != null");
         return ServiceProvider.GetRequiredService<TEntity>();
     }
+    
+    [TearDown]
+    public void TearDown()
+    {
+        var testName = TestContext.CurrentContext.Test.FullName;
+        var result = TestContext.CurrentContext.Result.Outcome == NUnit.Framework.Interfaces.ResultState.Success;
+        var status = TestContext.CurrentContext.Result.Outcome.Status.ToString();
+        Console.WriteLine($"{testName} {result} {status}");
+    }
 }
 
 public abstract class TestBase<T> where T : class, ITestFixture, new()
@@ -38,5 +47,14 @@ public abstract class TestBase<T> where T : class, ITestFixture, new()
     protected TEntity Resolve<TEntity>() where TEntity : notnull
     {
         return ServiceProvider.GetRequiredService<TEntity>();
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        var testName = TestContext.CurrentContext.Test.FullName;
+        var result = TestContext.CurrentContext.Result.Outcome == NUnit.Framework.Interfaces.ResultState.Success;
+        var status = TestContext.CurrentContext.Result.Outcome.Status.ToString();
+        Console.WriteLine($"{testName} {result} {status}");
     }
 }

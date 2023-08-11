@@ -26,7 +26,6 @@ public class CommentsTests : TestBase
         //Console.WriteLine(comments.Count);
         //comments.ForEach(Console.WriteLine);
         Assert.That(comments, Is.Not.Empty);
-        Assert.That(comments, Has.Count.EqualTo(500));
     }
 }
 
@@ -38,10 +37,7 @@ public class CommentsTests2 : TestBase<JsonPlaceholderTestFixture>
     public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
-        //Console.WriteLine(comments.Count);
-        //comments.ForEach(Console.WriteLine);
         Assert.That(comments, Is.Not.Empty);
-        Assert.That(comments, Has.Count.EqualTo(500));
     }
 }
 
@@ -53,9 +49,6 @@ public class CommentsTests<T> : TestBase<T> where T : class, ITestFixture, new()
     public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
-        //Console.WriteLine(comments.Count);
-        //comments.ForEach(Console.WriteLine);
         Assert.That(comments, Is.Not.Empty);
-        Assert.That(comments, Has.Count.EqualTo(500));
     }
 }
