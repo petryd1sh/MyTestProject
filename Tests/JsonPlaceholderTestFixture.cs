@@ -14,13 +14,13 @@ namespace MyTestProject.Tests;
 
 public class JsonPlaceholderTestFixture : ITestFixture
 {
-    private readonly List<IAsyncPolicy<HttpResponseMessage>> _policies = GetAsyncPolicies();
+    private readonly List<IAsyncPolicy<HttpResponseMessage>> _asyncPolicies = GetAsyncPolicies();
     public void ConfigureServices(IServiceCollection services)
     {
         //services.AddSingleton<LoggingHandler>(); // default is no response output
         services.AddSingleton<LoggingHandler>(_ => new LoggingHandler(true));
         services.AddRestEaseClient<ICommentsApi>(TestConfig.GetTestRunParameter("baseUrl"))
-            .AddPolicyHandlers(_policies)
+            .AddPolicyHandlers(_asyncPolicies)
             .AddLoggingHandler();
         services.AddTransient<ICommentService, CommentService>();
     }
