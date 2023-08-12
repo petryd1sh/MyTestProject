@@ -8,17 +8,17 @@
         <Loggers>
             <Logger friendlyName="nunit" enabled="True">
                 <Configuration>
-                    <LogFilePrefix>TestResults</LogFilePrefix>
+                    <LogFilePrefix>TestResults_DEV</LogFilePrefix>
                 </Configuration>
             </Logger>
             <Logger friendlyName="trx" enabled="True">
                 <Configuration>
-                    <LogFilePrefix>TestResults</LogFilePrefix>
+                    <LogFilePrefix>TestResults_DEV</LogFilePrefix>
                 </Configuration>
             </Logger>
             <Logger friendlyName="html" enabled="True">
                 <Configuration>
-                    <LogFilePrefix>TestResults</LogFilePrefix>
+                    <LogFilePrefix>TestResults_DEV</LogFilePrefix>
                 </Configuration>
             </Logger>
         </Loggers>
