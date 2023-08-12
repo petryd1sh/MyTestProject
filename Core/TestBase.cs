@@ -9,7 +9,7 @@ public class TestBase
     private ServiceProvider? ServiceProvider { get; set; }
     private ServiceCollection ServiceCollection { get; } = new();
 
-    protected void Register<T>() where T : class, ITestFixture, new()
+    protected void RegisterFixture<T>() where T : class, ITestFixture, new()
     {
         var collection = new T();
         collection.ConfigureServices(ServiceCollection);

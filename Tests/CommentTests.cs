@@ -17,7 +17,7 @@ public class CommentsTests : TestBase
     [SetUp]
     public void Setup()
     {
-        Register<JsonPlaceholderTestFixture>();
+        RegisterFixture<JsonPlaceholderTestFixture>();
     }
 
     [Test]
