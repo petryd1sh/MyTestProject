@@ -2,7 +2,7 @@
 
 public class LoggingHandler : DelegatingHandler
 {
-    private bool _outputResponse;
+    private readonly bool _outputResponse;
     public LoggingHandler(bool outputResponse = false)
     {
         _outputResponse = outputResponse;

@@ -49,3 +49,12 @@ public class JsonPlaceholderTestFixture : ITestFixture
         return policies;
     }
 }
+
+public static class MyTestFixtures
+{
+    public static readonly List<Type> FixtureServicesList = new()
+    {
+        typeof(JsonPlaceholderTestFixture),
+        typeof(JsonPlaceholderTestFixture)
+    };
+}
