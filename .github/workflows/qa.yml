@@ -27,8 +27,13 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal -s qa.runsettings
-    - name: Archive code coverage results
+    - name: Upload test result artifacts
       uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: TestResults/*
+    - name: Upload Pages test result artifacts
+      uses: actions/upload-pages-artifact@v2
       with:
         name: test-results
         path: TestResults/*
