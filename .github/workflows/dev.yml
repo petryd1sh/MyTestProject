@@ -37,6 +37,6 @@ jobs:
 #      with:
 #        name: test-results
 #        path: /home/runner/work/MyTestProject/MyTestProject/TestResults/*.html
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v2
+#    - name: Deploy to GitHub Pages
+#      id: deployment
+#      uses: actions/deploy-pages@v2
