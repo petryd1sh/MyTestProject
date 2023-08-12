@@ -2,7 +2,7 @@
 <RunSettings>
     <RunConfiguration>
         <!--<TestCaseFilter>TestCategory=cat</TestCaseFilter>-->
-        <ResultsDirectory>.\TestResults</ResultsDirectory>
+        <ResultsDirectory>TestResults</ResultsDirectory>
     </RunConfiguration>
     <LoggerRunSettings>
         <Loggers>
