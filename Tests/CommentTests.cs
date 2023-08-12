@@ -1,3 +1,4 @@
+using FluentAssertions;
 using MyTestProject.Core;
 using MyTestProject.Services;
 
@@ -52,7 +53,14 @@ public class CommentsTests<T> : TestBase<T> where T : class, ITestFixture, new()
         var commentId = 1;
         var comment1 = await CommentService.GetComment(commentId);
         Console.WriteLine(comment1);
-        Assert.That(comments, Is.Not.Empty);
-        Assert.That(comment1.Id, Is.EqualTo(commentId));
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(comments, Is.Not.Empty);
+            Assert.That(comment1.Id, Is.EqualTo(commentId));
+            
+            comments.Should().NotBeEmpty();
+            comment1.Id.Should().Be(1);
+        });
     }
 }
