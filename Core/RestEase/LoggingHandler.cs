@@ -1,7 +1,4 @@
-﻿using System.Net;
-using System.Net.Http.Json;
-
-namespace MyTestProject.Core.RestEase;
+﻿namespace MyTestProject.Core.RestEase;
 
 public class LoggingHandler : DelegatingHandler
 {

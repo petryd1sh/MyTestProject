@@ -1,4 +1,4 @@
-﻿namespace MyTestProject.Core;
+﻿namespace MyTestProject.Core.Config;
 
 public class TestParameterException : Exception
 {

@@ -4,6 +4,9 @@ using MyTestProject.Services;
 
 namespace MyTestProject.Tests;
 
+// You can quickly change how ITestFixtures are provided to the framework for dependency injection.
+
+// TestFixture registered in constructor or test/testfixture setup methods
 [Category("Comments")]
 public class CommentsTests : TestBase
 {
@@ -13,7 +16,7 @@ public class CommentsTests : TestBase
     // {
     //     Register<JsonPlaceholderTestFixture>();
     // }
-    // Either ctor or setup are valid (but not both)
+    // Either ctor or setup are valid
     [SetUp]
     public void Setup()
     {
@@ -24,12 +27,11 @@ public class CommentsTests : TestBase
     public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
-        //Console.WriteLine(comments.Count);
-        //comments.ForEach(Console.WriteLine);
         Assert.That(comments, Is.Not.Empty);
     }
 }
 
+// passing the TestFixture class to the TestBase
 public class CommentsTests2 : TestBase<JsonPlaceholderTestFixture>
 {
     private ICommentService CommentService => Resolve<ICommentService>();
@@ -42,6 +44,8 @@ public class CommentsTests2 : TestBase<JsonPlaceholderTestFixture>
     }
 }
 
+// generic TestFixtures passing one or many 
+[TestFixture(typeof(JsonPlaceholderTestFixture))]
 [TestFixture(typeof(JsonPlaceholderTestFixture))]
 public class CommentsTests<T> : TestBase<T> where T : class, ITestFixture, new()
 {

@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Http;
 using MyTestProject.Api;
 using MyTestProject.Core;
 using MyTestProject.Core.Config;
@@ -9,25 +8,20 @@ using MyTestProject.Services;
 using Polly;
 using Polly.Extensions.Http;
 using Polly.Timeout;
-using RestEase;
 using RestEase.HttpClientFactory;
 
 namespace MyTestProject.Tests;
 
 public class JsonPlaceholderTestFixture : ITestFixture
 {
+    private readonly List<IAsyncPolicy<HttpResponseMessage>> _policies = GetAsyncPolicies();
     public void ConfigureServices(IServiceCollection services)
     {
-        var policies = GetAsyncPolicies();
-
-        //services.AddSingleton<LoggingHandler>(); // default is no response content output
+        //services.AddSingleton<LoggingHandler>(); // default is no response output
         services.AddSingleton<LoggingHandler>(_ => new LoggingHandler(true));
-        // services.AddRestEaseClient<ICommentsApi>(TestConfig.GetTestRunParameter("baseUrl"))
-        //     .AddPolicyHandlers(policies)
-        //     .AddHttpMessageHandler<LoggingHandler>();
         services.AddRestEaseClient<ICommentsApi>(TestConfig.GetTestRunParameter("baseUrl"))
-            .AddPolicyHandlers(policies)
-            .AddLoggingHandler(); // added extension methods
+            .AddPolicyHandlers(_policies)
+            .AddLoggingHandler();
         services.AddTransient<ICommentService, CommentService>();
     }
 

@@ -1,6 +1,4 @@
-﻿using NUnit.Framework.Internal;
-
-namespace MyTestProject.Core;
+﻿namespace MyTestProject.Core;
 
 public interface ITestFixture : IConfigureServices
 {
