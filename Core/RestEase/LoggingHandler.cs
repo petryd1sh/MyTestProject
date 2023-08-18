@@ -9,7 +9,8 @@ public class LoggingHandler : DelegatingHandler
     }
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {   
-        Console.WriteLine(request.ToString());
+        //Console.WriteLine(request.ToString());
+        Console.WriteLine($"{request.RequestUri} {request.Method}");
         // if (!request.Headers.Contains("Authorization"))
         // {
         //     Console.WriteLine("No Authorization Header found");
@@ -18,7 +19,8 @@ public class LoggingHandler : DelegatingHandler
         Console.WriteLine(response.GetAwaiter().GetResult().StatusCode);
         if (_outputResponse)
         {
-            Console.WriteLine(response.GetAwaiter().GetResult().ToString());
+            //Console.WriteLine(response.GetAwaiter().GetResult().ToString());
+            Console.WriteLine(response.GetAwaiter().GetResult().Content.ToString());
         }
         return response;
     }

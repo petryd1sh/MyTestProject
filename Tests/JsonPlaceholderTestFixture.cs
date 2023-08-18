@@ -12,6 +12,15 @@ using RestEase.HttpClientFactory;
 
 namespace MyTestProject.Tests;
 
+public class AnotherJsonPlaceholderTestFixture : ITestFixture
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        new JsonPlaceholderTestFixture().ConfigureServices(services);
+        services.AddTransient<ICommentService, CommentService2>();
+    }
+}
+
 public class JsonPlaceholderTestFixture : ITestFixture
 {
     private readonly List<IAsyncPolicy<HttpResponseMessage>> _asyncPolicies = GetAsyncPolicies();
