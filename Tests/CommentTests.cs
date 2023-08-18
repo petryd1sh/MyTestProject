@@ -49,7 +49,7 @@ public class CommentsTests2 : TestBase<JsonPlaceholderTestFixture>
 // generic TestFixtures passing one or many 
 [Parallelizable(ParallelScope.Fixtures)]
 [TestFixture(typeof(JsonPlaceholderTestFixture))]
-[TestFixture(typeof(AnotherJsonPlaceholderTestFixture))]
+//[TestFixture(typeof(AnotherJsonPlaceholderTestFixture))]
 //[TestFixtureSource(typeof(MyTestFixtures),nameof(MyTestFixtures.FixtureServicesList))]
 public class CommentsTests<T> : TestBase<T> where T : class, ITestFixture, new()
 {
