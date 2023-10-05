@@ -8,8 +8,7 @@ public class LoggingHandler : DelegatingHandler
         _outputResponse = outputResponse;
     }
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-    {   
-        //Console.WriteLine(request.ToString());
+    {
         Console.WriteLine($"{request.RequestUri} {request.Method}");
         // if (!request.Headers.Contains("Authorization"))
         // {
@@ -19,8 +18,7 @@ public class LoggingHandler : DelegatingHandler
         Console.WriteLine(response.GetAwaiter().GetResult().StatusCode);
         if (_outputResponse)
         {
-            //Console.WriteLine(response.GetAwaiter().GetResult().ToString());
-            Console.WriteLine(response.GetAwaiter().GetResult().Content.ToString());
+            Console.WriteLine(response.GetAwaiter().GetResult().ToString());
         }
         return response;
     }

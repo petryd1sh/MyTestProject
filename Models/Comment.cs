@@ -9,6 +9,6 @@ public class Comment
     public string? Body { get; set; }
     public override string ToString()
     {
-        return $"Comment: {PostId} {Id} {Email}  "; //{Name}{Body}";
+        return $"{typeof(Comment)}: {PostId} {Id} {Email} "; //{Name}{Body}";
     }
 }

@@ -3,17 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MyTestProject.Core;
 
-public class TestBase
+public abstract class TestBase<T> where T : class, ITestFixture, new()
 {
     private ServiceProvider ServiceProvider { get; set; } = null!;
     private ServiceCollection ServiceCollection { get; } = new();
-
-    protected void RegisterFixture<T>() where T : class, ITestFixture, new()
-    {
-        var collection = new T();
-        collection.ConfigureServices(ServiceCollection);
-        ServiceProvider = ServiceCollection.BuildServiceProvider();
-    }
+    private T TestFixture { get; } = new();
     
     protected TEntity Resolve<TEntity>() where TEntity : notnull
     {
@@ -21,12 +15,35 @@ public class TestBase
         return ServiceProvider.GetRequiredService<TEntity>();
     }
     
+    [OneTimeSetUp]
+    public void OneTimeSetup()
+    {
+        Console.WriteLine($"OneTimeSetup");
+        TestFixture.ConfigureServices(ServiceCollection);
+        ServiceProvider = ServiceCollection.BuildServiceProvider();
+    }
+
+    [SetUp]
+    public void Setup()
+    {
+        Console.WriteLine($"Setup");
+        Console.WriteLine($"{TestContext.CurrentContext.Test.FullName}");
+    }
+    
     [TearDown]
     public void TearDown()
     {
+        Console.WriteLine($"TearDown");
         var testName = TestContext.CurrentContext.Test.FullName;
         var result = TestContext.CurrentContext.Result.Outcome == NUnit.Framework.Interfaces.ResultState.Success;
         var status = TestContext.CurrentContext.Result.Outcome.Status.ToString();
         Console.WriteLine($"{testName} {result} {status}");
+    }
+    
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Console.WriteLine($"OneTimeTearDown");
+        ServiceProvider.Dispose();
     }
 }
