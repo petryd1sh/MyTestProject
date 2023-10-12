@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MyTestProject.Core;
+using MyTestProject.Core.Playwright;
 using MyTestProject.Pages;
 
 namespace MyTestProject.Tests.UI;
@@ -8,6 +9,7 @@ public class SauceDemoTestFixture : ITestFixture
 {
     public void ConfigureServices(IServiceCollection services)
     {
+        new PlaywrightTestFixture().ConfigureServices(services);
         services.AddTransient<ILoginPage, LoginPage>();
         services.AddTransient<IHeaderPageComponent, HeaderPageComponent>();
         services.AddTransient<IInventoryPage, InventoryPage>();
