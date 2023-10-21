@@ -21,7 +21,7 @@ public class GenericFixturesCommentsTests<T> : TestBase<T> where T : class, ITes
     [OneTimeSetUp]
     public void CommentTestsOneTimeSetUp()
     {
-        CommentService = Resolve<ICommentService>();
+        //CommentService = Resolve<ICommentService>();
     }
     
     [SetUp]

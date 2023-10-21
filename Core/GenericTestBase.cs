@@ -46,6 +46,7 @@ public abstract class TestBase<T> where T : class, ITestFixture, new()
     {
         Console.WriteLine($"Setup");
         Console.WriteLine($"{TestContext.CurrentContext.Test.FullName}");
+        CreateProvider();
     }
     
     [TearDown]
