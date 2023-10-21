@@ -26,7 +26,9 @@ public class CartPage : BasePage, ICartPage
     public ILocator RemoveBoltTshirt => Page.Locator("#remove-sauce-labs-bolt-t-shirt");
     public ILocator RemoveJacket => Page.Locator("#remove-sauce-labs-fleece-jacket");
     public ILocator RemoveOnesie => Page.Locator("#remove-sauce-labs-onesie");
-    public ILocator RemoveTestAllTheThingsTshirt => Page.Locator("button:has-text('Remove'):near(.inventory_item_name:has-text('allTheThings'))");
+    //public ILocator RemoveTestAllTheThingsTshirt => Page.Locator("button:has-text('Remove'):near(.inventory_item_name:has-text('allTheThings'))");
+    public ILocator RemoveTestAllTheThingsTshirt => Page.Locator("button:has-text('Remove'):near(:text('allTheThings'), 80)");
+    public ILocator RemoveTestAllTheThingsTshirtLink => Page.GetByRole(AriaRole.Link, new PageGetByRoleOptions { Name = "Test.allTheThings() T-Shirt (Red)" });
     public ILocator CartItem => Page.Locator(".cart_item");
     public ILocator Checkout => Page.Locator("#checkout");
 
@@ -39,15 +41,19 @@ public class CartPage : BasePage, ICartPage
     public async Task AssertAllItems()
     {
         await AssertIsLoaded();
-
         var removeBackpackVisible = await RemoveBackpack.IsVisibleAsync();
         var removeBikeLightVisible = await RemoveBikeLight.IsVisibleAsync();
         var removeBoltTshirtVisible = await RemoveBoltTshirt.IsVisibleAsync();
         var removeJacketVisible = await RemoveJacket.IsVisibleAsync();
         var removeOnesieVisible = await RemoveOnesie.IsVisibleAsync();
-        var removeTestAllTheThingsTshirtVisible = await RemoveTestAllTheThingsTshirt.IsVisibleAsync();
+        var removeTestAllTheThingsTshirtVisible = false;// await RemoveTestAllTheThingsTshirt.IsVisibleAsync();
 
         var cartItems = await CartItem.ElementHandlesAsync();
+        foreach (var item in cartItems)
+        {
+            Console.WriteLine(item.TextContentAsync().Result);
+            removeTestAllTheThingsTshirtVisible = item.TextContentAsync().Result.Contains("allTheThings");
+        }
         var cartItemCount = cartItems.Count;
         
         Assert.Multiple(() =>

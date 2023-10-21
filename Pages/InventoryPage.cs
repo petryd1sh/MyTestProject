@@ -36,7 +36,8 @@ public class InventoryPage : BasePage, IInventoryPage
     public async Task AddAllItemsToCart()
     {
         await Page.ScreenshotAsync(new PageScreenshotOptions() { Path = "image11.jpg" });
-        await AddBackpack.ClickAsync(new LocatorClickOptions(){ClickCount = 100, Delay = 6500});
+        //await AddBackpack.ClickAsync(new LocatorClickOptions(){ClickCount = 100, Delay = 6500});
+        await AddBackpack.ClickAsync();
         await AddBikeLight.ClickAsync();
         await AddBoltTshirt.ClickAsync();
         await AddJacket.ClickAsync();

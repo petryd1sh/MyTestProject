@@ -21,7 +21,7 @@ public class JsonPlaceholderTestFixture : ITestFixture
     {
         services.AddSingleton<LoggingHandler>(); // default is no response output
         //services.AddSingleton<LoggingHandler>(_ => new LoggingHandler(true));
-        services.AddRestEaseClient<ICommentsApi>(TestConfig.GetTestRunParameter("baseUrl"))
+        services.AddRestEaseClient<ICommentsApi>(TestConfig.GetTestRunParameter("jsonPlaceholderUrl"))
             .AddPolicyHandlers(_asyncPolicies)
             .AddLoggingHandler();
         services.AddTransient<ICommentService, CommentService>();

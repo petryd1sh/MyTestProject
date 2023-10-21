@@ -13,27 +13,28 @@ namespace MyTestProject.Tests;
 //[TestFixtureSource(typeof(MyTestFixtures),nameof(MyTestFixtures.FixtureServicesList))]
 public class GenericFixturesCommentsTests<T> : TestBase<T> where T : class, ITestFixture, new()
 {
-    private ICommentService CommentService => Resolve<ICommentService>(); // creates an instance every reference
-    private ICommentService _commentService2;
+    private ICommentService CommentService;// => Resolve<ICommentService>(); // creates an instance every reference
+   // private ICommentService _commentService2;
     
     private const int CommentId = 1;
 
     [OneTimeSetUp]
     public void CommentTestsOneTimeSetUp()
     {
-        _commentService2 = Resolve<ICommentService>();
+        CommentService = Resolve<ICommentService>();
     }
     
     [SetUp]
     public void CommentTestsSetup()
     {
+        CommentService = Resolve<ICommentService>();
     }
     
     [Test]
     public async Task CanGetComments()
     {
         var comments = await CommentService.GetComments();
-        var comments2 = await _commentService2.GetComments();
+        //var comments2 = await _commentService2.GetComments();
         var comment1 = await CommentService.GetComment(CommentId);
         Console.WriteLine(comments.Count);
         Console.WriteLine(comment1);

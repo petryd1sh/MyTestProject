@@ -45,7 +45,11 @@ public class PlaywrightTestBase<TFixture> : TestBase<TFixture> where TFixture : 
                 Console.WriteLine("Failed to take screenshot.");
             }
         }
+    }
 
+    [OneTimeTearDown]
+    public async Task PlaywrightOneTimeTearDown()
+    {
         await Page.CloseAsync().ConfigureAwait(false);
         await Browser.CloseAsync().ConfigureAwait(false);
         Playwright.Dispose();
