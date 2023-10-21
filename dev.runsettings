@@ -27,6 +27,6 @@
         <Parameter name="jsonPlaceholderUrl" value="https://jsonplaceeeeeholder.typicode.com" />
         <Parameter name="baseUrl" value="https://www.saucedemo.com" />
         <Parameter name="timeoutInSeconds" value="10" />
-        <Parameter name="headless" value="false" />       
+        <Parameter name="headless" value="true" />       
     </TestRunParameters>
 </RunSettings>
