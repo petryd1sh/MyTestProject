@@ -1,9 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MyTestProject.Core.Playwright;
 
 public class PlaywrightTestFixture : ITestFixture
 {
+    public static ITestFixture Create => new PlaywrightTestFixture();
     public void ConfigureServices(IServiceCollection serviceCollection)
     {
         var playwright = PlaywrightFactory.GetPlaywright().GetAwaiter().GetResult();
