@@ -1,7 +1,9 @@
 ﻿using Bogus;
 using FluentAssertions;
 using Microsoft.Playwright;
+using MyTestProject.Api;
 using MyTestProject.Core.Playwright;
+using MyTestProject.Services;
 
 namespace MyTestProject.Pages;
 
@@ -15,9 +17,11 @@ public interface ICheckoutPage
 public class CheckoutPage : BasePage, ICheckoutPage
 {
     public IHeaderPageComponent HeaderPageComponent;
+    public IUserService UserService;
 
-    public CheckoutPage(IHeaderPageComponent headerPageComponent, IPage page) : base(page)
+    public CheckoutPage(IUserService userService, IHeaderPageComponent headerPageComponent, IPage page) : base(page)
     {
+        UserService = userService;
         HeaderPageComponent = headerPageComponent;
     }
 
@@ -37,10 +41,14 @@ public class CheckoutPage : BasePage, ICheckoutPage
     public async Task CompleteCheckoutForm()
     {
         await AssertIsLoaded("Checkout: Your Information");
-        var userData = new Faker().Person;
-        await FirstName.FillAsync(userData.FirstName);
-        await LastName.FillAsync(userData.LastName);
-        await PostalCode.FillAsync(userData.Address.ZipCode);
+        //var userData = new Faker().Person;
+        // await FirstName.FillAsync(userData.FirstName);
+        // await LastName.FillAsync(userData.LastName);
+        // await PostalCode.FillAsync(userData.Address.ZipCode);
+        var userData = await UserService.GetUser(1);
+        await FirstName.FillAsync(userData.Name.Split(' ')[0]);
+        await LastName.FillAsync(userData.Name.Split(' ')[1]);
+        await PostalCode.FillAsync("11111");
         await Continue.ClickAsync();
     }
 

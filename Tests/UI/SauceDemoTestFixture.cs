@@ -10,6 +10,7 @@ public class SauceDemoTestFixture : ITestFixture
     public void ConfigureServices(IServiceCollection services)
     {
         new PlaywrightTestFixture().ConfigureServices(services);
+        JsonPlaceholderTestFixture.Create.ConfigureServices(services);
         services.AddTransient<ILoginPage, LoginPage>();
         services.AddTransient<IHeaderPageComponent, HeaderPageComponent>();
         services.AddTransient<IInventoryPage, InventoryPage>();

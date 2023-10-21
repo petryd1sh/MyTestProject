@@ -24,7 +24,11 @@ public class JsonPlaceholderTestFixture : ITestFixture
         services.AddRestEaseClient<ICommentsApi>(TestConfig.GetTestRunParameter("jsonPlaceholderUrl"))
             .AddPolicyHandlers(_asyncPolicies)
             .AddLoggingHandler();
+        services.AddRestEaseClient<IUsersApi>(TestConfig.GetTestRunParameter("jsonPlaceholderUrl"))
+            .AddPolicyHandlers(_asyncPolicies)
+            .AddLoggingHandler();
         services.AddTransient<ICommentService, CommentService>();
+        services.AddTransient<IUserService, UserService>();
     }
 
     private static List<IAsyncPolicy<HttpResponseMessage>> GetAsyncPolicies()
