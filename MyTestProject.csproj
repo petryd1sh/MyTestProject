@@ -35,5 +35,11 @@
     <ItemGroup>
       <Folder Include="TestResults\" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Content Include=".github\workflows\dev.yml" />
+      <Content Include=".github\workflows\dotnet.yml" />
+      <Content Include=".github\workflows\qa.yml" />
+    </ItemGroup>
     
 </Project>
