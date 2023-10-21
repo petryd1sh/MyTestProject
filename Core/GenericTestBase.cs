@@ -33,20 +33,19 @@ public abstract class TestBase<T> where T : class, ITestFixture, new()
             ServiceProvider = null;
         }
     }
-    // [OneTimeSetUp]
-    // public void OneTimeSetup()
-    // {
-    //     Console.WriteLine($"OneTimeSetup");
-    //     TestFixture.ConfigureServices(ServiceCollection);
-    //     ServiceProvider = ServiceCollection.BuildServiceProvider();
-    // }
+    
+    [OneTimeSetUp]
+    public void OneTimeSetup()
+    {
+        Console.WriteLine($"OneTimeSetup");
+        CreateProvider();
+    }
 
     [SetUp]
     public void Setup()
     {
         Console.WriteLine($"Setup");
         Console.WriteLine($"{TestContext.CurrentContext.Test.FullName}");
-        CreateProvider();
     }
     
     [TearDown]
