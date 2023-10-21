@@ -19,12 +19,16 @@ public class JsonPlaceholderTestFixture : ITestFixture
     
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<LoggingHandler>(); // default is no response output
-        //services.AddSingleton<LoggingHandler>(_ => new LoggingHandler(true));
-        services.AddRestEaseClient<ICommentsApi>(TestConfig.GetTestRunParameter("baseUrl"))
+        services.AddTransient<LoggingHandler>(); // default is no response output
+        //services.AddTransient<LoggingHandler>(_ => new LoggingHandler(true));
+        services.AddRestEaseClient<ICommentsApi>(TestConfig.GetTestRunParameter("jsonPlaceholderUrl"))
+            .AddPolicyHandlers(_asyncPolicies)
+            .AddLoggingHandler();
+        services.AddRestEaseClient<IUsersApi>(TestConfig.GetTestRunParameter("jsonPlaceholderUrl"))
             .AddPolicyHandlers(_asyncPolicies)
             .AddLoggingHandler();
         services.AddTransient<ICommentService, CommentService>();
+        services.AddTransient<IUserService, UserService>();
     }
 
     private static List<IAsyncPolicy<HttpResponseMessage>> GetAsyncPolicies()

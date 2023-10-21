@@ -24,6 +24,9 @@
         </Loggers>
     </LoggerRunSettings>
     <TestRunParameters>
-        <Parameter name="baseUrl" value="https://jsonplaceeeeeholder.typicode.com" />
+        <Parameter name="jsonPlaceholderUrl" value="https://jsonplaceeeeeholder.typicode.com" />
+        <Parameter name="baseUrl" value="https://www.saucedemo.com" />
+        <Parameter name="timeoutInSeconds" value="10" />
+        <Parameter name="headless" value="false" />       
     </TestRunParameters>
 </RunSettings>
