@@ -8,8 +8,7 @@ public class AnotherJsonPlaceholderTestFixture : ITestFixture
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        //new JsonPlaceholderTestFixture().ConfigureServices(services);
-        JsonPlaceholderTestFixture.Create.ConfigureServices(services);
+        this.Build<JsonPlaceholderTestFixture>(services);
         services.AddTransient<ICommentService, CommentServiceNotImplemented>();
     }
 }
