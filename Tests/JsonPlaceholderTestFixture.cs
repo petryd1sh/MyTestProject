@@ -15,8 +15,7 @@ namespace MyTestProject.Tests;
 public class JsonPlaceholderTestFixture : ITestFixture
 {
     private readonly List<IAsyncPolicy<HttpResponseMessage>> _asyncPolicies = GetAsyncPolicies();
-    public static ITestFixture Create => new JsonPlaceholderTestFixture();
-    
+
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddTransient<LoggingHandler>(); // default is no response output
