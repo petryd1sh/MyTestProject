@@ -10,6 +10,7 @@ public class TestBase
 
     protected void RegisterFixture<T>() where T : class, ITestFixture, new()
     {
+        Console.WriteLine($"Register Test Fixture {typeof(T)}");
         var collection = new T();
         collection.ConfigureServices(ServiceCollection);
         ServiceProvider = ServiceCollection.BuildServiceProvider();
@@ -28,5 +29,19 @@ public class TestBase
         var result = TestContext.CurrentContext.Result.Outcome == NUnit.Framework.Interfaces.ResultState.Success;
         var status = TestContext.CurrentContext.Result.Outcome.Status.ToString();
         Console.WriteLine($"{testName} {result} {status}");
+    }
+    
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        try
+        {
+            Console.WriteLine($"TearDown Test Fixture");
+            ServiceProvider.Dispose();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }
