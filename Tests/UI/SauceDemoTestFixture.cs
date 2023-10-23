@@ -2,6 +2,7 @@
 using MyTestProject.Core;
 using MyTestProject.Core.Playwright;
 using MyTestProject.Pages;
+using MyTestProject.Services;
 
 namespace MyTestProject.Tests.UI;
 
@@ -17,5 +18,15 @@ public class SauceDemoTestFixture : ITestFixture
         services.AddTransient<IItemPage, ItemPage>();
         services.AddTransient<ICartPage, CartPage>();
         services.AddTransient<ICheckoutPage, CheckoutPage>();
+        services.AddTransient<ICheckoutUserDataService, JsonTypicodeCheckoutUserDataService>();
+    }
+}
+
+public class AnotherSauceDemoTestFixture : ITestFixture
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        this.Build<SauceDemoTestFixture>(services);
+        services.AddTransient<ICheckoutUserDataService, FakerCheckoutUserDataService>();
     }
 }

@@ -1,11 +1,14 @@
 ﻿using FluentAssertions;
+using MyTestProject.Core;
 using MyTestProject.Core.Playwright;
 using MyTestProject.Data;
 using MyTestProject.Pages;
 
 namespace MyTestProject.Tests.UI;
 
-public class CheckoutTests : PlaywrightTestBase<SauceDemoTestFixture>
+[TestFixture(typeof(SauceDemoTestFixture))]
+[TestFixture(typeof(AnotherSauceDemoTestFixture))]
+public class CheckoutTests2<T> : PlaywrightTestBase<T> where T : class, ITestFixture, new()
 {
     public ILoginPage LoginPage;
     public IInventoryPage InventoryPage;

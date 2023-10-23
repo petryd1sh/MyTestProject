@@ -13,7 +13,7 @@ public abstract class TestBase<T> where T : class, ITestFixture, new()
     {
         try
         {
-            Console.WriteLine($"RegisterTestFixture {typeof(T)}");
+            Console.WriteLine($"Register Test Fixture {typeof(T)}");
             TestFixture.ConfigureServices(ServiceCollection);
             ServiceProvider = ServiceCollection.BuildServiceProvider();
         }
@@ -30,7 +30,7 @@ public abstract class TestBase<T> where T : class, ITestFixture, new()
         {
             try
             {
-                Console.WriteLine($"TearDownTestFixture {typeof(T)}");
+                Console.WriteLine($"TearDown Test Fixture {typeof(T)}");
                 ServiceProvider.Dispose();
                 ServiceProvider = null;
             }
