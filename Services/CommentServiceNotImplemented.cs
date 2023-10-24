@@ -15,12 +15,10 @@ public class CommentServiceNotImplemented : ICommentService
     {
         Console.WriteLine(_ms);
         throw new NotImplementedException();
-        return await _commentsApi.GetCommentsAsync();
     }
     public Task<Comment> GetComment(int commentId)
     {
         Console.WriteLine(_ms);
         throw new NotImplementedException();
-        return Task.FromResult(_commentsApi.GetCommentAsync(commentId).Result.GetContent());
     }
 }
