@@ -49,7 +49,9 @@ public abstract class TestBase<T> where T : class, ITestFixture, new()
         {
             RegisterTestFixture();
         }
+#pragma warning disable CS8604
         return ServiceProvider.GetRequiredService<TEntity>();
+#pragma warning restore CS8604
     }
     
     [OneTimeSetUp]
@@ -60,14 +62,14 @@ public abstract class TestBase<T> where T : class, ITestFixture, new()
     }
 
     [SetUp]
-    public void Setup()
+    public void TestBaseSetup()
     {
         Console.WriteLine($"Setup");
         Console.WriteLine($"{TestContext.CurrentContext.Test.FullName}");
     }
     
     [TearDown]
-    public void TearDown()
+    public void TestBaseTearDown()
     {
         Console.WriteLine($"TearDown");
         var testName = TestContext.CurrentContext.Test.FullName;

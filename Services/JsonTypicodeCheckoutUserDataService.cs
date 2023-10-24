@@ -4,19 +4,19 @@ namespace MyTestProject.Services;
 
 public class JsonTypicodeCheckoutUserDataService : ICheckoutUserDataService
 {
-    public IUserService UserService;
+    private readonly IUserService _userService;
     public JsonTypicodeCheckoutUserDataService(IUserService userService)
     {
-        UserService = userService;
+        _userService = userService;
     }
     public CheckoutUser GetCheckoutUser()
     {
         Console.WriteLine("Get JsonTypicode CheckoutUser");
-        var userData = UserService.GetUser(1).GetAwaiter().GetResult();
+        var userData = _userService.GetUser(1).GetAwaiter().GetResult();
         return new CheckoutUser()
         {
-            FirstName = userData.Name.Split(' ')[0],
-            LastName = userData.Name.Split(' ')[1],
+            FirstName = userData.Name?.Split(' ')[0],
+            LastName = userData.Name?.Split(' ')[1],
             ZipCode = "11111"
         };
     }

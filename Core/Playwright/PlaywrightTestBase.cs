@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using MyTestProject.Core.Config;
 
 namespace MyTestProject.Core.Playwright;
 
@@ -15,13 +16,8 @@ public class PlaywrightTestBase<TFixture> : TestBase<TFixture> where TFixture : 
         Playwright = Resolve<IPlaywright>();
         Browser = Resolve<IBrowser>();
         Page = Resolve<IPage>();
-
-        var baseUrl = TestContext.Parameters["baseUrl"];
-        if (string.IsNullOrEmpty(baseUrl))
-        {
-            Assert.Fail($"Unable to find {nameof(baseUrl)} in .runsettings. Specify a .runsettings or correct this parameter.");
-        }
-
+        
+        var baseUrl = TestConfig.GetTestRunParameter("baseUrl");
         await TestContext.Out.WriteLineAsync($"{nameof(baseUrl)} {baseUrl}");
         await Page.GotoAsync(baseUrl).ConfigureAwait(false);
     }
